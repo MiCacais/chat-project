@@ -11,15 +11,17 @@ const RoomsList = props => {
   };
 
   return (
-    <ul className={classes['rooms-list']}>
-      {props.rooms.map((room) => (
-        <li key={room.id}>
-          <button type='button' onClick={() => setRoomCtx(room.id)}>
-            {room.title}
-          </button>
-        </li>
-      ))}
-    </ul>
+    <div className={classes['btn-group']}>
+      <ul className={classes['rooms-list']}>
+        {props.rooms.map((room) => (
+          <li key={room.id}>
+            <button type='button' onClick={() => setRoomCtx(room.id)}>
+              {room.title}
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };
 

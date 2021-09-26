@@ -25,7 +25,7 @@ const Chat = () => {
           <div className={classes.boxes}><Sender /></div>
           <button type='button' onClick={backToRoomsModeHandler}>Back</button>
         </div>
-        : <div className={classes.boxes}><Rooms /></div>
+        : <div><Rooms /></div>
       }
     </section>
   );

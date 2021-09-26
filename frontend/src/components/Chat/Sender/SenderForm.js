@@ -28,7 +28,7 @@ const SenderForm = props => {
       headers: {
         'Content-Type': 'application/json'
       }
-    })
+    });
   };
 
   return (

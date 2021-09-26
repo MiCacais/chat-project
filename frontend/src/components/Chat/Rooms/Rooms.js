@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import RoomList from './RoomsList';
+import classes from './Rooms.module.css';
 
 const Rooms = props => {
   const [rooms, setRooms] = useState([]);
@@ -48,8 +49,8 @@ const Rooms = props => {
     content = <p>Loading...</p>;
   }
   return (
-    <section>
-      <p>Choose a room</p>
+    <section className={classes.room}>
+      <h2>Choose a room</h2>
       {content}
     </section>
   );
