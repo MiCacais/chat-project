@@ -7,6 +7,7 @@ import classes from './AuthForm.module.css';
 const AuthForm = () => {
   const history = useHistory();
   const emailInputRef = useRef();
+  const nameInputRef = useRef();
   const passwordInputRef = useRef();
 
   const [isLogin, setIsLogin] = useState(true);
@@ -20,20 +21,23 @@ const AuthForm = () => {
   const submitHandler = event => {
     event.preventDefault();
     const enteredEmail = emailInputRef.current.value;
+    const enteredName = nameInputRef.current.value;
     const enteredPassword = passwordInputRef.current.value;
 
     let url;
+    let content = {
+      email: enteredEmail,
+      password: enteredPassword
+    }
     if (isLogin) {
       url = 'http://localhost:3000/auth/sign_in';
     }else{
       url = 'http://localhost:3000/auth';
+      content = {...content, name: enteredName}
     }
     fetch(url, {
       method: 'POST',
-      body: JSON.stringify({
-        email: enteredEmail,
-        password: enteredPassword
-      }),
+      body: JSON.stringify(content),
       headers: {
         'Content-Type': 'application/json'
       }
@@ -50,7 +54,7 @@ const AuthForm = () => {
         });
       }
     }).then((data) => {
-      authCtx.login(data.data.uid);
+      authCtx.login(data.data.uid, data.data.user_id);
       history.replace('/');
     }).catch(err => {
       alert(err.message);
@@ -65,6 +69,10 @@ const AuthForm = () => {
           <label htmlFor='email'>Your Email</label>
           <input type='email' id='email' required ref={emailInputRef}/>
         </div>
+        {!isLogin && <div className={classes.control}>
+          <label htmlFor='name'>Your Name</label>
+          <input type='name' id='name' required ref={nameInputRef}/>
+        </div>}
         <div className={classes.control}>
           <label htmlFor='password'>Your Password</label>
           <input type='password' id='password' required ref={passwordInputRef}/>

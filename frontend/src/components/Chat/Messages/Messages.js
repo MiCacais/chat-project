@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback, useContext } from 'react';
 import AuthContext from '../../../store/auth-context';
 import MessageList from './MessageList';
+import classes from './Messages.module.css';
 
 const Messages = props => {
   const [messages, setMessages] = useState([]);
@@ -23,6 +24,7 @@ const Messages = props => {
             id: messageData.id,
             content: messageData.content,
             user_id: messageData.user_id,
+            user_name: messageData.user_name,
           };
         });
         setMessages(transformedData);
@@ -56,6 +58,7 @@ const Messages = props => {
           id: messageData.id,
           content: messageData.content,
           user_id: messageData.user_id,
+          user_name: messageData.user_name,
         };
       });
       setMessages(transformedData);
@@ -83,8 +86,7 @@ const Messages = props => {
     content = <p>Loading...</p>;
   }
   return (
-    <section>
-      <p>Messages</p>
+    <section className={classes.container}>
       {content}
     </section>
   );

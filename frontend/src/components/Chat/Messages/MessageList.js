@@ -6,7 +6,8 @@ const MessageList = props => {
     <ul>
       {props.messages.map((message) => (
         <li key={message.id}>
-            {message.content}
+            <p>{message.user_name} says</p>
+            <p>{message.content}</p>
         </li>
       ))}
     </ul>
